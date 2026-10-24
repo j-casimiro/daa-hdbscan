@@ -1,0 +1,59 @@
+{
+  "settings": {
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "metric": "euclidean",
+    "alpha": 1.0,
+    "cluster_selection_method": "eom",
+    "allow_single_cluster": false,
+    "cluster_selection_epsilon": 0.0,
+    "match_reference_implementation": false
+  },
+  "baseline_algorithm": "generic",
+  "baseline_version": "0.8.40",
+  "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "batches": [
+    {
+      "n": 100,
+      "ari": 1.0,
+      "noise_membership_disagreements": 0,
+      "custom_clusters": 3,
+      "reference_clusters": 3,
+      "custom_noise_fraction": 0.12,
+      "reference_noise_fraction": 0.12,
+      "exact_partition_and_noise": true
+    },
+    {
+      "n": 200,
+      "ari": 0.8346117746635483,
+      "noise_membership_disagreements": 16,
+      "custom_clusters": 4,
+      "reference_clusters": 5,
+      "custom_noise_fraction": 0.095,
+      "reference_noise_fraction": 0.175,
+      "exact_partition_and_noise": false
+    },
+    {
+      "n": 500,
+      "ari": 0.899577958335046,
+      "noise_membership_disagreements": 12,
+      "custom_clusters": 6,
+      "reference_clusters": 7,
+      "custom_noise_fraction": 0.212,
+      "reference_noise_fraction": 0.236,
+      "exact_partition_and_noise": false
+    },
+    {
+      "n": 1000,
+      "ari": 0.9498413955178274,
+      "noise_membership_disagreements": 23,
+      "custom_clusters": 17,
+      "reference_clusters": 19,
+      "custom_noise_fraction": 0.273,
+      "reference_noise_fraction": 0.252,
+      "exact_partition_and_noise": false
+    }
+  ],
+  "note": "Correctness comparisons only; no runtime or RSS measurements."
+}

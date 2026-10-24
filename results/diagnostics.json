@@ -1,0 +1,226 @@
+[
+  {
+    "n": 100,
+    "reference_hierarchy_noise_equal": true,
+    "custom_hierarchy_noise_equal": true,
+    "reference_hierarchy_our_stages_ari": 1.0,
+    "custom_hierarchy_reference_stages_ari": 1.0,
+    "cophenetic_max_abs_difference": 1.0658141036401503e-12,
+    "cophenetic_equal_within_1e_9": true,
+    "repeated_mst_weights": 8,
+    "selected_cluster_stabilities": [
+      {
+        "cluster_id": 102,
+        "stability": 0.001064981216876322
+      },
+      {
+        "cluster_id": 104,
+        "stability": 0.3538577751019285
+      },
+      {
+        "cluster_id": 103,
+        "stability": 0.1836842344965473
+      }
+    ],
+    "zero_stability_selected_clusters": [],
+    "mst_audit": {
+      "spanning_components": 1,
+      "edges": 99,
+      "custom_total_weight": 6435.93783027932,
+      "scipy_kruskal_total_weight": 6435.93783027932,
+      "absolute_weight_difference": 0.0
+    },
+    "lifetime_audit": {
+      "positive_intervals_checked": 56,
+      "zero_lifetime_rows": 0,
+      "zero_lifetime_branches": 0,
+      "max_stability_integral_error": 1.1102230246251565e-16
+    }
+  },
+  {
+    "n": 200,
+    "reference_hierarchy_noise_equal": true,
+    "custom_hierarchy_noise_equal": true,
+    "reference_hierarchy_our_stages_ari": 1.0,
+    "custom_hierarchy_reference_stages_ari": 1.0,
+    "cophenetic_max_abs_difference": 1.2114753644709708e-12,
+    "cophenetic_equal_within_1e_9": true,
+    "repeated_mst_weights": 28,
+    "selected_cluster_stabilities": [
+      {
+        "cluster_id": 202,
+        "stability": 0.4852728229255994
+      },
+      {
+        "cluster_id": 204,
+        "stability": 1.1325173616209594
+      },
+      {
+        "cluster_id": 206,
+        "stability": 0.02657263325411463
+      },
+      {
+        "cluster_id": 205,
+        "stability": 0.8295010740541205
+      }
+    ],
+    "zero_stability_selected_clusters": [],
+    "mst_audit": {
+      "spanning_components": 1,
+      "edges": 199,
+      "custom_total_weight": 8979.739408977857,
+      "scipy_kruskal_total_weight": 8979.739408977857,
+      "absolute_weight_difference": 0.0
+    },
+    "lifetime_audit": {
+      "positive_intervals_checked": 102,
+      "zero_lifetime_rows": 11,
+      "zero_lifetime_branches": 1,
+      "max_stability_integral_error": 2.220446049250313e-16
+    }
+  },
+  {
+    "n": 500,
+    "reference_hierarchy_noise_equal": true,
+    "custom_hierarchy_noise_equal": true,
+    "reference_hierarchy_our_stages_ari": 1.0,
+    "custom_hierarchy_reference_stages_ari": 1.0,
+    "cophenetic_max_abs_difference": 3.654854197066015e-12,
+    "cophenetic_equal_within_1e_9": true,
+    "repeated_mst_weights": 47,
+    "selected_cluster_stabilities": [
+      {
+        "cluster_id": 502,
+        "stability": 3.3609062090887036
+      },
+      {
+        "cluster_id": 504,
+        "stability": 2.0585826498909903
+      },
+      {
+        "cluster_id": 508,
+        "stability": 0.06633736685511292
+      },
+      {
+        "cluster_id": 507,
+        "stability": 0.2530510146394838
+      },
+      {
+        "cluster_id": 510,
+        "stability": 0.45731697939827665
+      },
+      {
+        "cluster_id": 509,
+        "stability": 1.1032204718677987
+      }
+    ],
+    "zero_stability_selected_clusters": [],
+    "mst_audit": {
+      "spanning_components": 1,
+      "edges": 499,
+      "custom_total_weight": 15899.101839846198,
+      "scipy_kruskal_total_weight": 15899.101839846198,
+      "absolute_weight_difference": 0.0
+    },
+    "lifetime_audit": {
+      "positive_intervals_checked": 325,
+      "zero_lifetime_rows": 5,
+      "zero_lifetime_branches": 0,
+      "max_stability_integral_error": 4.440892098500626e-16
+    }
+  },
+  {
+    "n": 1000,
+    "reference_hierarchy_noise_equal": true,
+    "custom_hierarchy_noise_equal": true,
+    "reference_hierarchy_our_stages_ari": 1.0,
+    "custom_hierarchy_reference_stages_ari": 1.0,
+    "cophenetic_max_abs_difference": 2.9816149549333204e-12,
+    "cophenetic_equal_within_1e_9": true,
+    "repeated_mst_weights": 119,
+    "selected_cluster_stabilities": [
+      {
+        "cluster_id": 1002,
+        "stability": 0.45325683964259605
+      },
+      {
+        "cluster_id": 1004,
+        "stability": 5.556676319825158
+      },
+      {
+        "cluster_id": 1016,
+        "stability": 4.189830923631653
+      },
+      {
+        "cluster_id": 1015,
+        "stability": 0.016631446583521038
+      },
+      {
+        "cluster_id": 1012,
+        "stability": 0.5689534201505962
+      },
+      {
+        "cluster_id": 1014,
+        "stability": 0.12603279030741998
+      },
+      {
+        "cluster_id": 1018,
+        "stability": 1.4454488636106515
+      },
+      {
+        "cluster_id": 1017,
+        "stability": 0.2668194846492561
+      },
+      {
+        "cluster_id": 1008,
+        "stability": 0.6330640211175231
+      },
+      {
+        "cluster_id": 1020,
+        "stability": 0.11911194082765608
+      },
+      {
+        "cluster_id": 1022,
+        "stability": 0.010842241576810158
+      },
+      {
+        "cluster_id": 1024,
+        "stability": 0.663419128662516
+      },
+      {
+        "cluster_id": 1028,
+        "stability": 0.09732537316150139
+      },
+      {
+        "cluster_id": 1034,
+        "stability": 0.8759917160364048
+      },
+      {
+        "cluster_id": 1033,
+        "stability": 0.1921727538560104
+      },
+      {
+        "cluster_id": 1031,
+        "stability": 0.6664688749138897
+      },
+      {
+        "cluster_id": 1029,
+        "stability": 0.20218862155402056
+      }
+    ],
+    "zero_stability_selected_clusters": [],
+    "mst_audit": {
+      "spanning_components": 1,
+      "edges": 999,
+      "custom_total_weight": 24074.608448582483,
+      "scipy_kruskal_total_weight": 24074.608448582483,
+      "absolute_weight_difference": 0.0
+    },
+    "lifetime_audit": {
+      "positive_intervals_checked": 650,
+      "zero_lifetime_rows": 14,
+      "zero_lifetime_branches": 0,
+      "max_stability_integral_error": 3.552713678800501e-15
+    }
+  }
+]
