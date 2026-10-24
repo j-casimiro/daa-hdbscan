@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' blob:; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; worker-src blob:; connect-src 'none'">
+<title>Earthquake clustering · DAA HDBSCAN*</title>
+<style>
+:root{color-scheme:light;--ink:#172b40;--muted:#53677b;--line:#dbe3ec;--paper:#fff;--wash:#f3f6fa;--accent:#2461ba;--noise:#9ba6b3}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1280px;margin:auto;padding:32px 40px 26px}h1,h2,h3,p{margin:0}h1{font-size:32px;line-height:1.2;letter-spacing:-1px;font-weight:650}h2{font-size:20px;font-weight:650;letter-spacing:-.3px}h3{font-size:16px;font-weight:600}.eyebrow{font-size:12px;letter-spacing:1.7px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}.intro{font-size:17px;max-width:900px;margin-top:10px}.meta{color:var(--muted);font-size:14px;margin-top:10px}.meta strong{color:var(--ink);font-weight:600}.section{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 24px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:13px;color:var(--muted)}.caption{font-size:13px;color:var(--muted);margin-top:12px;max-width:1020px}.batch-controls{display:flex;gap:4px;align-items:center;flex-wrap:wrap}.batch-controls span{font-size:13px;color:var(--muted);margin-right:6px}button{font:inherit;font-size:14px;cursor:pointer;border:1px solid var(--line);background:white;color:var(--ink);border-radius:6px;min-height:36px;padding:6px 13px}button[aria-pressed="true"]{background:var(--ink);color:white;border-color:var(--ink)}button:focus-visible{outline:3px solid #76a9f1;outline-offset:2px}.view-toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:2px 0 13px}.view-controls{display:flex;gap:5px;flex-wrap:wrap}.drag-label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}select{font:inherit;padding:7px;border:1px solid var(--line);border-radius:6px;background:white;color:var(--ink)}.map-credit{font-size:12px;color:var(--muted);margin-top:8px}.map-credit a{color:inherit}.reset{margin-left:8px;color:var(--muted)}.mode-controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.mode-controls span{margin-left:8px}.plots[data-mode="custom"],.plots[data-mode="reference"]{grid-template-columns:1fr}.plots:not([data-mode="comparison"]) .plot{height:560px}.plots[data-mode="reference"] .plot-panel:nth-child(2){border-left:0;padding-left:0}.plot-panel[hidden]{display:none!important}.plots{display:grid;grid-template-columns:1fr 1fr;gap:16px}.plot-panel{min-width:0}.plot-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:6px 2px 9px}.plot{width:100%;height:410px;overflow:hidden}.plot-panel:nth-child(2){border-left:1px solid var(--line);padding-left:16px}.legend-note{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--muted)}.swatch{flex:0 0 10px;height:10px;border-radius:50%;margin-top:5px;background:var(--noise)}.axes-note{font-size:13px;color:var(--muted);margin-top:10px}.current-summary{font-size:14px;color:var(--ink);margin-bottom:8px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line)}th{font-size:12px;letter-spacing:.2px;font-weight:600;color:var(--muted)}th:first-child,td:first-child{text-align:left}th:last-child,td:last-child{text-align:left}tbody tr:last-child td{border-bottom:0}tr[data-active="true"]{background:#eef4fc}.status{font-size:12px;padding:3px 6px;border-radius:4px;background:#eef2f6;white-space:nowrap}.status.exact{background:#e7f5ed;color:#245b3d}.growth-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}.growth-grid>*{min-width:0}.validation-grid>*{min-width:0}.growth-plot{width:100%;height:255px;display:block}.storage h3{margin-bottom:8px}.storage table th,.storage table td{padding:9px 7px}.storage table{font-size:13px}.growth-heading{margin-bottom:4px}.flow{list-style:none;display:grid;grid-template-columns:repeat(8,1fr);gap:16px;margin:16px 0 0;padding:0}.flow li{position:relative;background:var(--wash);border-radius:6px;padding:11px 9px;min-width:0}.flow li:not(:last-child):after{content:'→';position:absolute;right:-14px;top:27px;color:var(--muted);font-size:14px}.flow .number{display:block;font-size:11px;letter-spacing:.8px;color:var(--muted);margin-bottom:4px}.flow strong{font-size:13px;font-weight:650;display:block}.flow .detail{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:5px}.validation-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}.validation-grid h3{margin-bottom:8px}.checks{list-style:none;padding:0;margin:0;display:grid;gap:9px}.checks li{font-size:14px}.checks strong{font-weight:650}.limits{margin:0;padding-left:18px;font-size:14px}.limits li+li{margin-top:8px}.boundary{font-size:14px;font-weight:600;margin-top:17px;border-top:1px solid var(--line);padding-top:13px}.footer{font-size:12px;color:var(--muted);margin:18px 2px 0}.footer summary{cursor:pointer}.footer ul{padding-left:18px;overflow-wrap:anywhere}.footer pre{max-height:200px;overflow:auto;white-space:pre-wrap;font-size:11px}.offline{float:right}.error{display:none;padding:14px;background:#fff0ed;color:#8c2c1f}noscript{display:block;margin:20px;color:#8c2c1f}
+@media(max-width:1000px){main{padding:25px 24px}.section{padding:18px}.flow{grid-template-columns:repeat(4,1fr);gap:13px}.flow li:nth-child(4):after{display:none}.growth-grid{gap:18px}.plot{height:380px}}
+@media(max-width:720px){main{padding:20px 12px}h1{font-size:27px}.section{padding:16px 12px;margin-top:18px}.plots,.growth-grid,.validation-grid{grid-template-columns:1fr}.plot-panel:nth-child(2){border-left:0;padding-left:0}.plots{gap:8px}.plot{height:355px}.plots:not([data-mode="comparison"]) .plot{height:440px}.section-head{gap:10px}.flow{grid-template-columns:repeat(2,1fr)}.flow li:nth-child(even):after{display:none}.offline{float:none;display:block;margin-bottom:5px}th,td{padding:9px 8px}.growth-grid{gap:12px}.plot-head{padding-left:4px}.intro{font-size:16px}}
+@media print{main{padding:10px}.section{break-inside:avoid}.batch-controls{display:none}.footer details{display:none}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="eyebrow">Design &amp; Analysis of Algorithms · Results</p>
+<h1>Earthquake clustering, explained</h1>
+<p class="intro">Build and validate a small HDBSCAN* engine for PHIVOLCS earthquake events, with a defensible account of its computational growth.</p>
+<p class="meta" id="overview"></p>
+</header>
+<noscript>Enable JavaScript to view the embedded 3D plots and results. No internet connection is required.</noscript>
+<p id="error" class="error" role="alert"></p>
+<section class="section" aria-labelledby="events-title">
+<div class="section-head">
+<h2 id="events-title">Explore earthquake clusters</h2>
+<div class="batch-controls" role="group" aria-label="Earthquake batch">
+<span>Events</span>
+<button type="button" data-batch="100" aria-pressed="false">100</button>
+<button type="button" data-batch="200" aria-pressed="false">200</button>
+<button type="button" data-batch="500" aria-pressed="false">500</button>
+<button type="button" data-batch="1000" aria-pressed="true">1,000</button>
+
+</div>
+</div>
+<div class="mode-controls" role="group" aria-label="Result display mode">
+<button type="button" data-display-mode="custom" aria-pressed="true">Custom</button>
+<button type="button" data-display-mode="reference" aria-pressed="false">Reference</button>
+<button type="button" data-display-mode="comparison" aria-pressed="false">Comparison</button>
+<span id="mode-description" class="small" aria-live="polite">Custom implementation · full-width view</span>
+</div>
+<div class="view-toolbar">
+<div class="view-controls" role="group" aria-label="Camera presets">
+<button type="button" id="top-view" aria-pressed="false">Top view</button>
+<button type="button" id="depth-view" aria-pressed="true">3D depth view</button>
+<button type="button" id="clustering-view" aria-pressed="false">Clustering view</button>
+<button type="button" id="reset">Reset view</button>
+</div>
+<label class="drag-label" for="drag-mode">Drag action <select id="drag-mode"><option value="orbit">Rotate</option><option value="pan">Pan</option></select></label>
+<span class="small">Scroll to zoom · cameras linked</span>
+</div>
+<p id="current-summary" class="current-summary" aria-live="polite"></p>
+<div class="plots" id="result-plots" data-mode="comparison">
+<div class="plot-panel" id="custom-panel"><div class="plot-head"><h3>Custom HDBSCAN*</h3><span id="custom-detail" class="small"></span></div><div id="custom-plot" class="plot" role="img" aria-label="Custom result: interactive 3D earthquake coordinates"></div></div>
+<div class="plot-panel" id="reference-panel"><div class="plot-head"><h3 id="reference-title">Generic reference</h3><span id="reference-detail" class="small"></span></div><div id="reference-plot" class="plot" role="img" aria-label="Reference result: interactive 3D earthquake coordinates"></div></div>
+</div>
+<div class="legend-note"><span class="swatch" aria-hidden="true"></span><span><strong>Gray = noise.</strong> Cluster colors are aligned by maximum shared-event overlap, one-to-one within this batch. Unmatched clusters use new colors; matching colors do not imply identical membership. Hover shows event ID, catalog place, latitude, longitude, depth, magnitude, and original cluster ID.</span></div>
+<p class="axes-note" id="coordinate-note"><strong>Surface reference = 0 km.</strong> Events with greater depth are drawn below it. Longitude/latitude use degrees; depth uses kilometers. <strong>This mixed-unit display must not be used to judge physical distances.</strong> Vertical exaggeration is <strong>2×</strong> relative to an approximate horizontal scale at 16°N (111.195 km per latitude degree; longitude adjusted by cos 16°). Clustering still uses the original metric coordinates.</p>
+<p class="map-credit">Coastline and city labels: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer">Natural Earth</a>, 1:50m, public domain (repository release v5.1.2), embedded offline. Generalized outline; the 0 km plane is schematic and contains no terrain or bathymetry.</p>
+</section>
+<section class="section" aria-labelledby="comparison-title">
+<div class="section-head"><h2 id="comparison-title">Partition comparison</h2><p class="small">Fixed settings · min_cluster_size = <span id="mcs"></span> · min_samples = <span id="ms"></span></p></div>
+<div class="table-wrap"><table id="comparison-table"><thead><tr><th scope="col">Events</th><th scope="col">Custom<br>clusters</th><th scope="col">Reference<br>clusters</th><th scope="col">Custom<br>noise</th><th scope="col">Reference<br>noise</th><th scope="col">ARI</th><th scope="col">Partition agreement</th></tr></thead><tbody></tbody></table></div>
+<p class="caption">ARI measures agreement with the reference, not geological accuracy. A value of 1 means identical partitions up to label renumbering; the status also checks noise membership. No fault validation is claimed.</p>
+</section>
+<section class="section" aria-labelledby="growth-title">
+<h2 id="growth-title" class="growth-heading">Theoretical growth—not measured runtime.</h2>
+<p class="small">Custom dense fitting: O(n²) time and O(n²) space at fixed dimension d = 3.</p>
+<div class="growth-grid">
+<svg id="growth-chart" class="growth-plot" role="img" aria-label="Theoretical quadratic growth across the four event batches"></svg>
+<div class="storage"><h3>Dense storage model</h3><div class="table-wrap"><table id="storage-table"><thead><tr><th scope="col">Events</th><th scope="col">One float64<br>matrix (MB)</th><th scope="col">Two float64<br>buffers (MB)</th></tr></thead><tbody></tbody></table></div><p class="caption">Decimal MB. One matrix = 8n² bytes. Two float buffers coexist during core selection (≈16n² bytes). <strong>Neither is total fitting memory:</strong> input, other arrays, temporaries, and Python/native overhead add more. RSS was not measured.</p></div>
+</div>
+</section>
+<section class="section" aria-labelledby="flow-title">
+<h2 id="flow-title">From locations to labels</h2>
+<ol class="flow">
+<li><span class="number">01</span><strong>Distances</strong><span class="detail">Pairwise 3D Euclidean</span></li>
+<li><span class="number">02</span><strong>Core distance</strong><span class="detail">Neighbor order statistic</span></li>
+<li><span class="number">03</span><strong>Reachability</strong><span class="detail">Maximum of distance &amp; cores</span></li>
+<li><span class="number">04</span><strong>Dense Prim</strong><span class="detail">Minimum spanning tree</span></li>
+<li><span class="number">05</span><strong>Hierarchy</strong><span class="detail">Sort MST edges &amp; merge</span></li>
+<li><span class="number">06</span><strong>Condensation</strong><span class="detail">Prune small branches</span></li>
+<li><span class="number">07</span><strong>Stability + EOM</strong><span class="detail">Choose stable branches</span></li>
+<li><span class="number">08</span><strong>Labels</strong><span class="detail">Clusters; −1 for noise</span></li>
+</ol>
+</section>
+<section class="section" aria-labelledby="validation-title">
+<h2 id="validation-title">What is verified—and what remains different</h2>
+<div class="validation-grid" style="margin-top:14px"><div><h3>Evidence from the project artifacts</h3><ul id="checks" class="checks"></ul></div><div><h3>Interpretation limits</h3><ul class="limits"><li>Equal-weight merges admit different binary hierarchies. Minimum-size pruning and root exclusion can then change clusters and noise.</li><li>Clustering coordinates approximate hypocenters on a sphere (radius 6,371.0088 km minus depth). Datum and depth reference were not specified in inspected records; distances are 3D chords, not surface geodesics.</li><li>All selected clusters in these four batches have positive stability. The separate 21-event tied regression permits a zero-stability selection under the pinned EOM equality rule.</li></ul></div></div>
+<p class="boundary">Verified MST and stability properties do not establish full baseline equivalence. The larger batches retain partition and noise differences.</p>
+</section>
+<footer class="footer"><span class="offline">Self-contained · offline · no server</span><details><summary>Source snapshot &amp; bundled library notices</summary><p>Generated from saved project artifacts; no clustering or benchmarking runs in this page. Color alignment is presentation-only and does not change labels.</p><ul id="sources"></ul><p>Plotly.js gl3d 2.35.2 is bundled below under its license.</p><pre>__LICENSES__</pre></details></footer>
+</main>
+<script>window.PlotlyConfig={MathJaxConfig:'local'};</script>
+<script>__PLOTLY__</script>
+<script type="application/json" id="project-data">__PAYLOAD__</script>
+<script>__APP__</script>
+</body>
+</html>
