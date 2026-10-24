@@ -1,0 +1,18 @@
+{
+  "source": "Natural Earth",
+  "scale": "1:50m",
+  "repository_release": "v5.1.2",
+  "license": "Public domain",
+  "terms_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+  "acquired_on": "2026-10-16",
+  "files": {
+    "ne_50m_coastline.geojson": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_coastline.geojson",
+      "sha256": "271f1c4c1908312bac6b29d158ea1356544beafc129f260005300913aa5ea283"
+    },
+    "ne_50m_populated_places_simple.geojson": {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_populated_places_simple.geojson",
+      "sha256": "8e70756b39fae9bcdc1e332bfc510c024c5edd3a13203ffd20092ee37b61d978"
+    }
+  }
+}
