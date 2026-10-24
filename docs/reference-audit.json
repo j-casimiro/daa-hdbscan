@@ -1,0 +1,15 @@
+{
+  "version": "0.8.40",
+  "source_url": "https://files.pythonhosted.org/packages/source/h/hdbscan/hdbscan-0.8.40.tar.gz",
+  "source_sha256": "c9e383ff17beee0591075ff65d524bda5b5a35dfb01d218245a7ba30c8d48a17",
+  "inspected_files": [
+    "hdbscan/hdbscan_.py",
+    "hdbscan/_hdbscan_reachability.pyx",
+    "hdbscan/_hdbscan_linkage.pyx",
+    "hdbscan/_hdbscan_tree.pyx"
+  ],
+  "core_convention": "partition index min(min_samples,n-1), self at zero",
+  "root_policy": "excluded",
+  "zero_weight": "infinite lambda; custom infinite birth/death lifetime defined as zero",
+  "runtime_benchmark": false
+}
